@@ -7,7 +7,9 @@ module Database
   def save_decrypted_messages
     Dir.mkdir '16_cipher' unless Dir.exist? '16_cipher'
     filename = "#{create_filename}.yaml"
+    # rubocop:disable Style/FileWrite
     File.open("16_cipher/#{filename}", 'w') { |file| file.write save_to_yaml }
+    # rubocop:enable Style/FileWrite
     display_file_location(filename)
   rescue SystemCallError => e
     puts "Error while writing to file #{filename}."
